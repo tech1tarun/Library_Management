@@ -1,18 +1,79 @@
 import { Routes, Route } from "react-router-dom";
-import AdminPage from "./pages/AdminLoginPage";
-import UserPage from "./pages/UserPage";
 import Login from "./pages/Main";
-import AdminHome from "./pages/AdminHome";
+import AdminLoginPage from "./pages/AdminLoginPage";
 import UserLoginPage from "./pages/UserLoginPage";
+import AdminHome from "./pages/AdminHome";
+import UserHome from "./pages/UserPage";
+import IssueBook from "./pages/IssueBook";
+import ReturnBook from "./pages/ReturnBook";
+import UserReports from "./pages/UserReports";
+import TransactionsPage from "./pages/TransactionsPage";
+import BookAvailability from "./pages/BookAvailability";
+import BookSearchResult from "./pages/BookSearchResult";
+import FinePayment from "./pages/FinePayment";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Maintenance from "./pages/Maintenance";
 
 function App() {
   return (
     <Routes>
+      {/* Main selection page */}
       <Route path="/" element={<Login />} />
-      <Route path="/admin" element={<AdminPage />} />
-      <Route path="/user" element={<UserPage />} />
-      <Route path="/userlogin" element={<UserLoginPage />} />
-      <Route path="/admin-home" element={<AdminHome />} />
+
+      {/* Login Pages */}
+      <Route path="/admin-login" element={<AdminLoginPage />} />
+      <Route path="/user-login" element={<UserLoginPage />} />
+
+      {/* Dashboards */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute role="admin">
+            <AdminHome />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/user"
+        element={
+          <ProtectedRoute role="user">
+            <UserHome />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* User Actions */}
+      <Route path="/issue/:id" element={<IssueBook />} />
+
+      <Route path="/reports" element={<UserReports />} />
+
+      {/* Transaction */}
+      <Route path="/transactions" element={<TransactionsPage />} />
+
+      {/* Book Available */}
+      <Route path="/books" element={<BookAvailability />} />
+
+      <Route path="/search-result" element={<BookSearchResult />} />
+
+      <Route
+        path="/return-book"
+        element={
+          <ProtectedRoute role="user">
+            <ReturnBook />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="/fine-payment" element={<FinePayment />} />
+
+      <Route
+        path="/maintenance"
+        element={
+          <ProtectedRoute role="admin">
+            <Maintenance />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

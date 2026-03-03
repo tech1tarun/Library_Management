@@ -13,11 +13,12 @@ const Login = () => {
       return;
     }
 
-    // Temporary logic (replace later with backend auth)
     if (userId === "adm" && password === "adm") {
       navigate("/admin");
-    } else {
+    } else if (userId === "user" && password === "user123") {
       navigate("/user");
+    } else {
+      alert("Invalid Credentials");
     }
   };
 
@@ -28,7 +29,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-xl rounded-lg p-10 w-[400px]">
+      <div className="bg-white shadow-xl rounded-lg p-10 w-100">
         {/* Header */}
         <div className="flex justify-between mb-6">
           <button

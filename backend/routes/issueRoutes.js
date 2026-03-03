@@ -1,9 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const issueController = require("../controllers/issueController");
+const {
+  issueBook,
+  returnBook,
+  getActiveIssues,
+  getOverdueIssues,
+  getMyIssues,
+} = require("../controllers/issueController");
+const protect = require("../middleware/authMiddleware");
 
-router.post("/issue", issueController.issueBook);
-router.put("/return/:id", issueController.returnBook);
-router.get("/", issueController.getIssues);
+router.post("/issue", protect, issueBook);
+router.post("/return", protect, returnBook);
+router.get("/active", protect, getActiveIssues);
+router.get("/overdue", protect, getOverdueIssues);
+router.get("/my-issues", protect, getMyIssues);
 
 module.exports = router;

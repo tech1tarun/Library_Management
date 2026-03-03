@@ -9,12 +9,15 @@ const AdminHome = () => {
     { from: "EC(B/M)00001", to: "EC(B/M)00000", category: "Economics" },
     { from: "FC(B/M)00001", to: "FC(B/M)00000", category: "Fiction" },
     { from: "CH(B/M)00001", to: "CH(B/M)00000", category: "Children" },
-    { from: "PD(B/M)00001", to: "PD(B/M)00000", category: "Personal Development" },
+    {
+      from: "PD(B/M)00001",
+      to: "PD(B/M)00000",
+      category: "Personal Development",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-
       {/* Top Navigation */}
       <div className="flex justify-between items-center mb-6">
         <button
@@ -24,9 +27,7 @@ const AdminHome = () => {
           Chart
         </button>
 
-        <h1 className="text-2xl font-semibold">
-          Admin Home Page
-        </h1>
+        <h1 className="text-2xl font-semibold">Admin Home Page</h1>
 
         <button
           onClick={() => navigate("/")}
@@ -38,7 +39,12 @@ const AdminHome = () => {
 
       {/* Menu */}
       <div className="flex gap-10 font-semibold mb-6">
-        <button className="hover:text-blue-600">Maintenance</button>
+        <button
+          onClick={() => navigate("/maintenance")}
+          className="hover:text-blue-600"
+        >
+          Maintenance
+        </button>
         <button className="hover:text-blue-600">Reports</button>
         <button className="hover:text-blue-600">Transactions</button>
       </div>
@@ -78,7 +84,6 @@ const AdminHome = () => {
           </button>
         </div>
       </div>
-
     </div>
   );
 };
